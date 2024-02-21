@@ -14,6 +14,10 @@ public class Main {
         RacingGame racingGame = errorHandler.readUntilNoExceptionOccurs(inputView::readCarNames);
         Round round = errorHandler.readUntilNoExceptionOccurs(inputView::readRound);
 
-        outputView.printGameResult(racingGame, round);
+        for (int i = 0; i < round.getRound(); i++) {
+            racingGame.playOneRound();
+        }
+
+        outputView.printResult(racingGame);
     }
 }

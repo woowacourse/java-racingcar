@@ -14,6 +14,11 @@ public class Car implements Comparable<Car> {
         this.score = 0;
     }
 
+    public Car(String name, int score) {
+        this.name = name;
+        this.score = score;
+    }
+
     private void validate(String name) {
         if (name == null) {
             throw new IllegalArgumentException("이름은 null일 수 없습니다.");

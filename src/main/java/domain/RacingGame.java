@@ -15,19 +15,20 @@ public class RacingGame {
 
     private final List<Car> cars;
     private final MoveStrategy moveStrategy;
+    private final List<RoundRecord> gameRecord = new ArrayList<>();
 
     public RacingGame(String rawCarNames, MoveStrategy moveStrategy) {
         this.cars = validate(rawCarNames);
         this.moveStrategy = moveStrategy;
     }
 
-    public List<Car> playOneRound() {
+    public void playOneRound() {
         for (Car car : cars) {
             if (moveStrategy.isMovable()) {
                 car.move();
             }
         }
-        return cars;
+        gameRecord.add(new RoundRecord(cars));
     }
 
     public List<Car> findWinners() {
@@ -65,5 +66,9 @@ public class RacingGame {
         if (nonDuplicatedNames.size() != names.size()) {
             throw new IllegalArgumentException("중복되거나 비어 있는 자동차 이름이 있습니다.");
         }
+    }
+
+    public List<RoundRecord> getGameRecord() {
+        return gameRecord;
     }
 }

@@ -64,11 +64,16 @@ class RacingGameTest {
     @Test
     @DisplayName("자동차 이동 성공")
     void playOneRound() {
-        RacingGame racingGame = new RacingGame("a,b,c,d", () -> true);
-        List<Car> cars = racingGame.playOneRound();
-        for (Car car : cars) {
-            assertThat(car.getScore()).isEqualTo(1);
-        }
+        // given
+        RacingGame racingGame = new RacingGame("a,b", () -> true);
+
+        // when
+        racingGame.playOneRound();
+        List<RoundRecord> gameRecord = racingGame.getGameRecord();
+
+        // then
+        assertThat(gameRecord.get(0).getCars().get(0).getScore()).isEqualTo(1);
+        assertThat(gameRecord.get(0).getCars().get(1).getScore()).isEqualTo(1);
     }
 
     @Test
