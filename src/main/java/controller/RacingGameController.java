@@ -1,70 +1,44 @@
 package controller;
 
-import domain.Car;
 import domain.Cars;
 import domain.MoveCount;
-import java.util.List;
-import util.StringParser;
+import dto.GameResultDto;
+import service.RaceGameService;
+import util.Repeater;
+import view.InputMapper;
 import view.InputView;
 import view.OutputView;
 
 public class RacingGameController {
 
-    private static final String CAR_NAMES_DELIMITER = ",";
-
     private final InputView inputView;
     private final OutputView outputView;
+    private final RaceGameService raceGameService;
+    private final InputMapper inputMapper;
 
-    public RacingGameController(InputView inputView, OutputView outputView) {
+    public RacingGameController(InputView inputView, OutputView outputView, RaceGameService raceGameService,
+                                InputMapper inputMapper) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.raceGameService = raceGameService;
+        this.inputMapper = inputMapper;
     }
 
     public void run() {
+        Cars cars = Repeater.repeatUntilNoException(this::prepareCars);
+        MoveCount moveCount = Repeater.repeatUntilNoException(this::prepareMoveCount);
 
-        Cars cars = prepareCars();
-
-        MoveCount moveCount = prepareMoveCount();
-
-        outputView.printResultPrefix();
-        executeRace(cars, moveCount);
-
-        findWinners(cars);
-    }
-
-    private void findWinners(Cars cars) {
-        List<Car> winners = cars.chooseWinners();
-        outputView.printWinner(winners);
-    }
-
-    private void executeRace(Cars cars, MoveCount moveCount) {
-        while (!moveCount.isCountZero()) {
-            cars.tryMoveAll();
-            moveCount.consume();
-            outputView.printRaceResult(cars.getCars());
-        }
+        GameResultDto gameResultDto = raceGameService.runRaceGame(cars, moveCount);
+        outputView.printRaceResult(gameResultDto);
     }
 
     private Cars prepareCars() {
-        try {
-            String name = inputView.requestCarName();
-            List<String> carNames = StringParser.split(name, CAR_NAMES_DELIMITER);
-            return Cars.from(carNames.stream()
-                    .map(Car::from)
-                    .toList());
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            return prepareCars();
-        }
+        String carNames = inputView.requestCarNames();
+        return inputMapper.mapToCars(carNames);
     }
 
     private MoveCount prepareMoveCount() {
-        try {
-            Integer count = StringParser.parseToInt(inputView.requestMoveCount());
-            return MoveCount.from(count);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            return prepareMoveCount();
-        }
+        String count = inputView.requestMoveCount();
+        return inputMapper.mapToMoveCount(count);
     }
 }

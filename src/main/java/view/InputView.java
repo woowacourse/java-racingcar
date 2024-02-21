@@ -8,8 +8,13 @@ public class InputView {
     private static final String REQUEST_MOVE_COUNT = "시도할 회수는 몇회인가요?";
 
     private final Scanner scanner = new Scanner(System.in);
+    private final InputMapper inputMapper;
 
-    public String requestCarName() {
+    public InputView(InputMapper inputMapper) {
+        this.inputMapper = inputMapper;
+    }
+
+    public String requestCarNames() {
         System.out.println(REQUEST_CAR_NAME);
         return scanner.nextLine();
     }
