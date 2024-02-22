@@ -1,129 +1,18 @@
 package domain;
 
+import dto.CarDto;
+import dto.ResultDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import utils.PowerGenerator;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DisplayName("레이싱 자동차들 동작 테스트")
+@DisplayName("레이싱 게임 테스트")
 public class RacingGameTest {
-
-    @Test
-    @DisplayName("이름에 따라 자동차들이 정상적으로 생성되는가")
-    void is_cars_correctly_made_by_name() {
-        // given
-        String[] carNames = new String[]{"mang", "weve", "pobi", "neo"};
-
-        // when
-        RacingGame racingGame = new RacingGame(carNames);
-
-        // then
-        assertThat(racingGame.getAllCars()).extracting("name")
-                .containsExactlyElementsOf(Arrays.stream(carNames).toList());
-    }
-
-    @Nested
-    @DisplayName("우승자 반환 테스트")
-    class WinnersReturnTest {
-
-        @Test
-        @DisplayName("단독 우승인 경우를 정상적으로 반환되는가")
-        void return_single_winner_correctly_test() {
-            // given
-            String[] carNames = new String[]{"mang", "weve", "pobi", "neo"};
-            RacingGame racingGame = new RacingGame(carNames);
-
-            // when
-            List<Car> cars = racingGame.getAllCars();
-            Car winner = cars.get(0);
-            winner.move(9);
-
-            // then
-            List<Car> winners = racingGame.getWinners();
-            assertThat(winners).containsExactly(winner);
-        }
-
-        @Test
-        @DisplayName("복수 우승인 경우를 정상적으로 반환되는가")
-        void return_multiple_winners_correctly_test() {
-            // given
-            String[] carNames = new String[]{"mang", "weve", "pobi", "neo"};
-            RacingGame racingGame = new RacingGame(carNames);
-
-            // when
-            List<Car> cars = racingGame.getAllCars();
-            Car winnerA = cars.get(0);
-            winnerA.move(9);
-            Car winnerB = cars.get(1);
-            winnerB.move(6);
-
-            // then
-            List<Car> winners = racingGame.getWinners();
-            assertThat(winners).containsExactlyElementsOf(List.of(winnerA, winnerB));
-        }
-
-        @Test
-        @DisplayName("우승자가 없는가")
-        void no_winners_test() {
-            // given
-            String[] carNames = new String[]{"mang", "weve", "pobi", "neo"};
-            RacingGame racingGame = new RacingGame(carNames);
-
-            // then
-            List<Car> winners = racingGame.getWinners();
-            assertThat(winners).isEmpty();
-        }
-    }
-
-
-    @Test
-    @DisplayName("자동차를 한 번 정상적으로 움직이는가")
-    void move_cars_once_correctly_test() {
-        // given
-        final List<Integer> powers = List.of(3, 4);
-        final PowerGenerator powerGenerator = new FixedPowerGenerator(powers);
-        final RacingGame racingGame = new RacingGame(new String[]{"pobi", "weve"}, powerGenerator);
-
-        // when
-        racingGame.move();
-
-        // then
-        List<Car> cars = racingGame.getAllCars();
-        Car pobiCar = cars.get(0);
-        Car weveCar = cars.get(1);
-
-        assertThat(pobiCar.getPosition()).isEqualTo(0);
-        assertThat(weveCar.getPosition()).isEqualTo(1);
-        assertThat(racingGame.getWinners()).containsExactly(weveCar);
-    }
-
-    @Test
-    @DisplayName("자동차를 여러 번 정상적으로 움직이는가")
-    void move_cars_multiply_times_correctly_test() {
-        // given
-        final List<Integer> powers = List.of(1, 2, 3, 4, 5, 6, 7, 8);
-        final PowerGenerator powerGenerator = new FixedPowerGenerator(powers);
-        final RacingGame racingGame = new RacingGame(new String[]{"pobi", "weve"}, powerGenerator);
-
-        // when
-        int numberOfAttempts = powers.size() / 2;
-        IntStream.range(0, numberOfAttempts).forEach(ignore -> racingGame.move());
-
-        // then
-        List<Car> cars = racingGame.getAllCars();
-        Car pobiCar = cars.get(0);
-        Car weveCar = cars.get(1);
-
-        assertThat(pobiCar.getPosition()).isEqualTo(2);
-        assertThat(weveCar.getPosition()).isEqualTo(3);
-        assertThat(racingGame.getWinners()).containsExactly(weveCar);
-    }
 
     static class FixedPowerGenerator implements PowerGenerator {
         private final List<Integer> numbers;
@@ -139,4 +28,91 @@ public class RacingGameTest {
         }
     }
 
+    @Nested
+    @DisplayName("레이싱 우승자 테스트")
+    class RacingWinnersTest {
+
+        @Test
+        @DisplayName("복수 우승인 경우를 정상적으로 반환되는가")
+        void return_multiple_winners_correctly_test() {
+            // given
+            Attempts attempts = new Attempts(1);
+            String[] carNames = new String[]{"mang", "weve", "pobi", "neo"};
+            List<Integer> powers = List.of(9, 0, 9, 0);
+            RacingGame racingGame = new RacingGame(carNames, new FixedPowerGenerator(powers));
+
+            // when
+            racingGame.race(attempts);
+            List<CarDto> winners = racingGame.getWinners();
+
+            // then
+            List<CarDto> expected = List.of(new CarDto("mang", 1), new CarDto("pobi", 1));
+            assertThat(winners).isEqualTo(expected);
+        }
+
+        @Test
+        @DisplayName("우승자가 없는가")
+        void no_winners_test() {
+            // given
+            Attempts attempts = new Attempts(1);
+            String[] carNames = new String[]{"mang", "weve", "pobi", "neo"};
+            List<Integer> powers = List.of(0, 0, 0, 0);
+            RacingGame racingGame = new RacingGame(carNames, new FixedPowerGenerator(powers));
+
+            // when
+            racingGame.race(attempts);
+            List<CarDto> winners = racingGame.getWinners();
+
+            // then
+            List<CarDto> expected = List.of();
+            assertThat(winners).isEqualTo(expected);
+        }
+    }
+
+    @Nested
+    @DisplayName("레이스 과정 테스트")
+    class WinnersReturnTest {
+
+        @Test
+        @DisplayName("1번 시도의 레이스가 정상적으로 실행되는가")
+        void one_attempt_race_runs_correctly_test() {
+            // given
+            Attempts attempts = new Attempts(1);
+            String[] carNames = new String[]{"mang", "weve", "pobi", "neo"};
+            List<Integer> powers = List.of(9, 0, 9, 0);
+            RacingGame racingGame = new RacingGame(carNames, new FixedPowerGenerator(powers));
+
+            // when
+
+            List<ResultDto> raceResult = racingGame.race(attempts);
+
+            // then
+            List<ResultDto> expected = List.of(new ResultDto(List.of(new CarDto("mang", 1),
+                    new CarDto("weve", 0), new CarDto("pobi", 1), new CarDto("neo", 0))));
+
+            assertThat(raceResult).isEqualTo(expected);
+        }
+
+        @Test
+        @DisplayName("2번 시도의 레이스가 정상적으로 실행되는가")
+        void two_attempt_race_runs_correctly_test() {
+            // given
+            Attempts attempts = new Attempts(2);
+            String[] carNames = new String[]{"mang", "weve", "pobi", "neo"};
+            List<Integer> powers = List.of(9, 0, 9, 0, 9, 9, 0, 9);
+            RacingGame racingGame = new RacingGame(carNames, new FixedPowerGenerator(powers));
+
+            // when
+
+            List<ResultDto> raceResult = racingGame.race(attempts);
+
+            // then
+            List<ResultDto> expected = List.of(new ResultDto(List.of(new CarDto("mang", 1),
+                            new CarDto("weve", 0), new CarDto("pobi", 1), new CarDto("neo", 0))),
+                    new ResultDto(List.of(new CarDto("mang", 2),
+                            new CarDto("weve", 1), new CarDto("pobi", 1), new CarDto("neo", 1))));
+
+            assertThat(raceResult).isEqualTo(expected);
+        }
+    }
 }

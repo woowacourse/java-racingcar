@@ -17,7 +17,7 @@ public class RaceController {
         List<ResultDto> raceProcess = racingGame.race(attempts);
 
         OutputView.printRaceProcess(raceProcess);
-        OutputView.printResult(racingGame.getResult());
+        OutputView.printResult(racingGame.getWinners());
     }
 
     private static RacingGame repeatUntilGetValidCarNames() {
