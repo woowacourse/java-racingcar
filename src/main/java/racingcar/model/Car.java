@@ -53,7 +53,7 @@ public class Car {
         }
     }
 
-    public boolean isWinner(int maxPosition) {
-        return this.position > 0 && this.position == maxPosition;
+    public boolean isWinner(int winnerPosition) {
+        return this.position > 0 && this.position == winnerPosition;
     }
 }
