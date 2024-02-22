@@ -33,7 +33,7 @@ public class RacingGameTest {
     class RacingWinnersTest {
 
         @Test
-        @DisplayName("복수 우승인 경우를 정상적으로 반환되는가")
+        @DisplayName("우승자 여러 명인가")
         void return_multiple_winners_correctly_test() {
             // given
             Attempts attempts = new Attempts(1);
@@ -83,7 +83,6 @@ public class RacingGameTest {
             RacingGame racingGame = new RacingGame(carNames, new FixedPowerGenerator(powers));
 
             // when
-
             List<ResultDto> raceResult = racingGame.race(attempts);
 
             // then
@@ -103,14 +102,14 @@ public class RacingGameTest {
             RacingGame racingGame = new RacingGame(carNames, new FixedPowerGenerator(powers));
 
             // when
-
             List<ResultDto> raceResult = racingGame.race(attempts);
 
             // then
-            List<ResultDto> expected = List.of(new ResultDto(List.of(new CarDto("mang", 1),
-                            new CarDto("weve", 0), new CarDto("pobi", 1), new CarDto("neo", 0))),
-                    new ResultDto(List.of(new CarDto("mang", 2),
-                            new CarDto("weve", 1), new CarDto("pobi", 1), new CarDto("neo", 1))));
+            List<ResultDto> expected = List.of(
+                    new ResultDto(List.of(new CarDto("mang", 1), new CarDto("weve", 0),
+                            new CarDto("pobi", 1), new CarDto("neo", 0))),
+                    new ResultDto(List.of(new CarDto("mang", 2), new CarDto("weve", 1),
+                            new CarDto("pobi", 1), new CarDto("neo", 1))));
 
             assertThat(raceResult).isEqualTo(expected);
         }
