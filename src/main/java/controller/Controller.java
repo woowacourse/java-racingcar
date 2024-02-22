@@ -2,13 +2,18 @@ package controller;
 
 import conversion.Converter;
 import domain.Car;
-import java.util.List;
-import service.Service;
+import domain.RacingGame;
+import domain.movestrategy.RandomMoveStrategy;
 import view.InputView;
 import view.IterativeReader;
 import view.OutputView;
 
+import java.util.List;
+
 public class Controller {
+
+    private Controller() {
+    }
 
     public static void start() {
         List<Car> cars = IterativeReader.readUntilNoError(Controller::getCars);
@@ -17,11 +22,11 @@ public class Controller {
         OutputView.printRoundResult();
 
         for (int i = 0; i < round; i++) {
-            Service.playOneRound(cars);
+            RacingGame.playOneRound(cars, new RandomMoveStrategy());
             OutputView.printScore(cars);
         }
 
-        List<String> winnerNames = Service.getWinnerNames(cars);
+        List<String> winnerNames = RacingGame.getWinnerNames(cars);
         OutputView.printWinners(winnerNames);
     }
 

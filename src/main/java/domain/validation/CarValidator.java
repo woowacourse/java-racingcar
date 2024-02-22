@@ -1,16 +1,15 @@
-package validation;
-
-import static constant.Numbers.MAX_CAR_LENGTH;
-import static constant.Numbers.MAX_ROUND;
-import static constant.Numbers.MIN_CAR_LENGTH;
-import static constant.Numbers.MIN_ROUND;
+package domain.validation;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Validator {
+public class CarValidator {
+    private CarValidator() {
+    }
 
+    private static final int MIN_CAR_LENGTH = 1;
+    private static final int MAX_CAR_LENGTH = 100;
     private static final String NAME_RULE = "^[a-zA-Z]{1,5}$";
 
     public static void validateCarNames(List<String> names) {
@@ -21,11 +20,6 @@ public class Validator {
         validateCarAmount(names);
     }
 
-    public static void validateRound(int round) {
-        if (round < MIN_ROUND || round > MAX_ROUND) {
-            throw new IllegalArgumentException("1-100로 시도 횟수를 적어주세요.");
-        }
-    }
 
     private static void validateNameRules(String name) {
         if (!name.matches(NAME_RULE)) {
