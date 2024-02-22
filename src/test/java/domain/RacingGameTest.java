@@ -36,17 +36,17 @@ public class RacingGameTest {
         @DisplayName("우승자 여러 명인가")
         void return_multiple_winners_correctly_test() {
             // given
-            Attempts attempts = new Attempts(1);
-            String[] carNames = new String[]{"mang", "weve", "pobi", "neo"};
-            List<Integer> powers = List.of(9, 0, 9, 0);
-            RacingGame racingGame = new RacingGame(carNames, new FixedPowerGenerator(powers));
+            final Attempts attempts = new Attempts(1);
+            final String[] carNames = new String[]{"mang", "weve", "pobi", "neo"};
+            final List<Integer> powers = List.of(9, 0, 9, 0);
+            final RacingGame racingGame = new RacingGame(carNames, new FixedPowerGenerator(powers));
 
             // when
             racingGame.race(attempts);
-            List<CarDto> winners = racingGame.getWinners();
+            final List<CarDto> winners = racingGame.getWinners();
 
             // then
-            List<CarDto> expected = List.of(new CarDto("mang", 1), new CarDto("pobi", 1));
+            final List<CarDto> expected = List.of(new CarDto("mang", 1), new CarDto("pobi", 1));
             assertThat(winners).isEqualTo(expected);
         }
 
@@ -54,17 +54,17 @@ public class RacingGameTest {
         @DisplayName("우승자가 없는가")
         void no_winners_test() {
             // given
-            Attempts attempts = new Attempts(1);
-            String[] carNames = new String[]{"mang", "weve", "pobi", "neo"};
-            List<Integer> powers = List.of(0, 0, 0, 0);
-            RacingGame racingGame = new RacingGame(carNames, new FixedPowerGenerator(powers));
+            final Attempts attempts = new Attempts(1);
+            final String[] carNames = new String[]{"mang", "weve", "pobi", "neo"};
+            final List<Integer> powers = List.of(0, 0, 0, 0);
+            final RacingGame racingGame = new RacingGame(carNames, new FixedPowerGenerator(powers));
 
             // when
             racingGame.race(attempts);
-            List<CarDto> winners = racingGame.getWinners();
+            final List<CarDto> winners = racingGame.getWinners();
 
             // then
-            List<CarDto> expected = List.of();
+            final List<CarDto> expected = List.of();
             assertThat(winners).isEqualTo(expected);
         }
     }
@@ -77,16 +77,16 @@ public class RacingGameTest {
         @DisplayName("1번 시도의 레이스가 정상적으로 실행되는가")
         void one_attempt_race_runs_correctly_test() {
             // given
-            Attempts attempts = new Attempts(1);
-            String[] carNames = new String[]{"mang", "weve", "pobi", "neo"};
-            List<Integer> powers = List.of(9, 0, 9, 0);
-            RacingGame racingGame = new RacingGame(carNames, new FixedPowerGenerator(powers));
+            final Attempts attempts = new Attempts(1);
+            final String[] carNames = new String[]{"mang", "weve", "pobi", "neo"};
+            final List<Integer> powers = List.of(9, 0, 9, 0);
+            final RacingGame racingGame = new RacingGame(carNames, new FixedPowerGenerator(powers));
 
             // when
-            List<ResultDto> raceResult = racingGame.race(attempts);
+            final List<ResultDto> raceResult = racingGame.race(attempts);
 
             // then
-            List<ResultDto> expected = List.of(new ResultDto(List.of(new CarDto("mang", 1),
+            final List<ResultDto> expected = List.of(new ResultDto(List.of(new CarDto("mang", 1),
                     new CarDto("weve", 0), new CarDto("pobi", 1), new CarDto("neo", 0))));
 
             assertThat(raceResult).isEqualTo(expected);
@@ -96,16 +96,16 @@ public class RacingGameTest {
         @DisplayName("2번 시도의 레이스가 정상적으로 실행되는가")
         void two_attempt_race_runs_correctly_test() {
             // given
-            Attempts attempts = new Attempts(2);
-            String[] carNames = new String[]{"mang", "weve", "pobi", "neo"};
-            List<Integer> powers = List.of(9, 0, 9, 0, 9, 9, 0, 9);
-            RacingGame racingGame = new RacingGame(carNames, new FixedPowerGenerator(powers));
+            final Attempts attempts = new Attempts(2);
+            final String[] carNames = new String[]{"mang", "weve", "pobi", "neo"};
+            final List<Integer> powers = List.of(9, 0, 9, 0, 9, 9, 0, 9);
+            final RacingGame racingGame = new RacingGame(carNames, new FixedPowerGenerator(powers));
 
             // when
-            List<ResultDto> raceResult = racingGame.race(attempts);
+            final List<ResultDto> raceResult = racingGame.race(attempts);
 
             // then
-            List<ResultDto> expected = List.of(
+            final List<ResultDto> expected = List.of(
                     new ResultDto(List.of(new CarDto("mang", 1), new CarDto("weve", 0),
                             new CarDto("pobi", 1), new CarDto("neo", 0))),
                     new ResultDto(List.of(new CarDto("mang", 2), new CarDto("weve", 1),

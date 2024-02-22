@@ -14,7 +14,7 @@ public class RacingGame {
         this.carGroup = new CarGroup(carNames);
     }
 
-    RacingGame(final String[] carNames, PowerGenerator powerGenerator) {
+    RacingGame(final String[] carNames, final PowerGenerator powerGenerator) {
         this.carGroup = new CarGroup(carNames, powerGenerator);
     }
 
