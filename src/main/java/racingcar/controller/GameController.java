@@ -5,7 +5,7 @@ import java.util.List;
 import racingcar.model.Car;
 import racingcar.model.CarGroup;
 import racingcar.model.MoveHistory;
-import racingcar.utils.RandomNumberGenerator;
+import racingcar.generator.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -39,7 +39,7 @@ public class GameController {
     private List<MoveHistory> play(CarGroup carGroup, int moveCount) {
         List<MoveHistory> moveHistories = new ArrayList<>();
         for (int i = 0; i < moveCount; i++) {
-            MoveHistory moveHistory = carGroup.race(RandomNumberGenerator.generate(carGroup.getCarsSize()));
+            MoveHistory moveHistory = carGroup.race(new RandomNumberGenerator());
             moveHistories.add(moveHistory);
         }
         return moveHistories;

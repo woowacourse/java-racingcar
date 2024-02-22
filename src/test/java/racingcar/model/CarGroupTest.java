@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.generator.FixedNumberGenerator;
 
 class CarGroupTest {
     @Test
@@ -30,7 +31,8 @@ class CarGroupTest {
 
         int moveNumber = 4;
         int notMoveNumber = 0;
-        carGroup.race(List.of(moveNumber, notMoveNumber));
+        List<Integer> numbers = List.of(moveNumber, notMoveNumber);
+        carGroup.race(new FixedNumberGenerator(numbers));
 
         assertThat(carGroup.findWinners()).isEqualTo(List.of(moly));
     }
@@ -45,7 +47,8 @@ class CarGroupTest {
         );
 
         int notMoveNumber = 0;
-        carGroup.race(List.of(notMoveNumber, notMoveNumber));
+        List<Integer> numbers = List.of(notMoveNumber, notMoveNumber);
+        carGroup.race(new FixedNumberGenerator(numbers));
 
         assertThat(carGroup.findWinners()).isEmpty();
     }

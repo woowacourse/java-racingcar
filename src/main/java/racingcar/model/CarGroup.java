@@ -3,6 +3,7 @@ package racingcar.model;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import racingcar.generator.NumberGenerator;
 
 public class CarGroup {
     private final List<Car> cars;
@@ -27,11 +28,12 @@ public class CarGroup {
         }
     }
 
-    public MoveHistory race(List<Integer> randomNumbers) {
+    public MoveHistory race(NumberGenerator numberGenerator) {
         Map<String, Integer> nameAndPosition = new HashMap<>();
+        List<Integer> carMoveValues = numberGenerator.generate(getCarsSize());
         for (int i = 0; i < cars.size(); i++) {
             Car car = cars.get(i);
-            car.move(randomNumbers.get(i));
+            car.move(carMoveValues.get(i));
             nameAndPosition.put(car.getName(), car.getPosition());
         }
 
