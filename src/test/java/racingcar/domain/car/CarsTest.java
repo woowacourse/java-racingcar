@@ -1,10 +1,13 @@
-package domain.car;
+package racingcar.domain.car;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import racingcar.domain.car.Car;
+import racingcar.domain.car.CarDistance;
+import racingcar.domain.car.Cars;
 
 class CarsTest {
     @DisplayName("자동차들의 최대 전진 거리를 구한다.")

@@ -1,11 +1,13 @@
-package domain.car;
+package racingcar.domain.car;
 
-import domain.RacingRule;
+import racingcar.domain.RacingRule;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import racingcar.domain.car.Car;
+import racingcar.domain.car.Cars;
 
 class RacingRuleTest {
     @DisplayName("최대 전진거리의 자동차들을 반환한다.")

@@ -1,4 +1,4 @@
-package domain;
+package racingcar.domain;
 
 public record RacingCount(int count) {
 

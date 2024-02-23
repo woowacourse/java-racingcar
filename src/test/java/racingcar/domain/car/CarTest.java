@@ -1,13 +1,14 @@
-package domain.car;
+package racingcar.domain.car;
 
-import domain.power.Power;
+import racingcar.domain.power.Power;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import racingcar.domain.car.Car;
 
-import static domain.power.PowerGenerator.POWER_GENERATOR;
+import static racingcar.domain.power.PowerGenerator.POWER_GENERATOR;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CarTest {

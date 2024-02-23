@@ -1,4 +1,4 @@
-package domain.power;
+package racingcar.domain.power;
 
 import java.util.Random;
 

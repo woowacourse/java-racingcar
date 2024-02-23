@@ -1,4 +1,4 @@
-package domain.car;
+package racingcar.domain.car;
 
 public record CarDistance(int distance) {
     private static final CarDistance INITIAL_DISTANCE = new CarDistance(0);

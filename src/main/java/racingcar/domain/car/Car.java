@@ -1,6 +1,6 @@
-package domain.car;
+package racingcar.domain.car;
 
-import domain.power.Power;
+import racingcar.domain.power.Power;
 
 public class Car {
 

@@ -1,4 +1,4 @@
-package domain.car;
+package racingcar.domain.car;
 
 public record CarName(String name) {
 

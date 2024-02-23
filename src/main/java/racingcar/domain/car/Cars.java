@@ -1,8 +1,8 @@
-package domain.car;
+package racingcar.domain.car;
 
-import static domain.power.PowerGenerator.POWER_GENERATOR;
+import static racingcar.domain.power.PowerGenerator.POWER_GENERATOR;
 
-import dto.CarStatus;
+import racingcar.dto.CarStatus;
 
 import java.util.HashSet;
 import java.util.List;

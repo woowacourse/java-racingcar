@@ -1,10 +1,11 @@
-package domain.car;
+package racingcar.domain.car;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import racingcar.domain.car.Cars;
 
 class CarFactoryTest {
 

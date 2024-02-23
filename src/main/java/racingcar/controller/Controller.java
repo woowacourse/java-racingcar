@@ -1,12 +1,12 @@
-package controller;
+package racingcar.controller;
 
-import domain.car.Car;
-import domain.car.Cars;
-import domain.RacingCount;
-import domain.RacingRule;
-import dto.CarStatus;
-import view.InputView;
-import view.OutputView;
+import racingcar.domain.car.Car;
+import racingcar.domain.car.Cars;
+import racingcar.domain.RacingCount;
+import racingcar.domain.RacingRule;
+import racingcar.dto.CarStatus;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 import java.util.List;
 
