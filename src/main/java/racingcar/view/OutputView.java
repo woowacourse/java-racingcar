@@ -1,8 +1,10 @@
 package racingcar.view;
 
 import java.util.List;
+import java.util.Map;
 import racingcar.model.Car;
 import racingcar.model.CarGroup;
+import racingcar.model.MoveHistory;
 
 public class OutputView {
     private static final String WINNER_DESCRIPTION = "가 최종 우승했습니다.";
@@ -24,14 +26,6 @@ public class OutputView {
         println(RESULT_DESCRIPTION);
     }
 
-    public static void printPosition(CarGroup carGroup) {
-        println(carGroup.toString());
-    }
-
-    public static void printException(String message) {
-        println(message);
-    }
-
     public static void printWinnerList(List<Car> winnerGroup) {
         List<String> names = winnerGroup.stream()
                 .map(Car::getName)
@@ -51,5 +45,20 @@ public class OutputView {
 
     public static void printlnInputMoveCount() {
         println(MOVE_COUNT_INPUT_DESCRIPTION);
+    }
+
+    public static void printMoveHistories(List<MoveHistory> moveHistories) {
+        for (MoveHistory moveHistory : moveHistories) {
+            printMoveHistory(moveHistory);
+        }
+    }
+
+    public static void printMoveHistory(MoveHistory moveHistory) {
+        Map<String, Integer> nameAndPosition = moveHistory.nameAndPosition();
+        StringBuilder sb = new StringBuilder();
+        for (String name : nameAndPosition.keySet()) {
+            sb.append(name).append(" : ").append("-".repeat(nameAndPosition.get(name))).append("\n");
+        }
+        System.out.println(sb);
     }
 }

@@ -1,50 +1,54 @@
 package racingcar.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.generator.FixedNumberGenerator;
 
-public class CarGroupTest {
-    private CarGroup carGroup;
+class CarGroupTest {
+    @Test
+    @DisplayName("한 자동차 그룹에는 중복된 자동차가 존재할 수 없다.")
+    void duplicatedCarInCarGroup() {
+        Car duplicatedCar = new Car("moly");
 
-    @BeforeEach
-    void makeGroup() {
-        carGroup = new CarGroup();
+        assertThatThrownBy(
+                () -> new CarGroup(List.of(duplicatedCar, duplicatedCar)))
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessage("자동차의 이름은 중복될 수 없습니다.");
     }
 
     @Test
     @DisplayName("가장 멀리 움직인 자동차가 우승한다.")
     void findWinnerTest() {
-        int moveNumber = 5;
+        Car moly = new Car("moly");
+        Car pedro = new Car("pedro");
+        CarGroup carGroup = new CarGroup(
+                List.of(moly, pedro)
+        );
 
-        Car pedro = new Car("페드로");
-        Car moly = new Car("몰리");
-        Car neo = new Car("네오");
+        int moveNumber = 4;
+        int notMoveNumber = 0;
+        List<Integer> numbers = List.of(moveNumber, notMoveNumber);
+        carGroup.race(new FixedNumberGenerator(numbers));
 
-        carGroup.add(pedro);
-        carGroup.add(moly);
-        carGroup.add(neo);
-
-        neo.move(moveNumber);
-        neo.move(moveNumber);
-        pedro.move(moveNumber);
-
-        assertThat(carGroup.findWinners()).isEqualTo(List.of(neo));
+        assertThat(carGroup.findWinners()).isEqualTo(List.of(moly));
     }
 
     @Test
     @DisplayName("모든 자동차가 이동하지 않을 경우 우승자는 없다.")
     void drawTest() {
-        Car pedro = new Car("페드로");
-        Car moly = new Car("몰리");
-        Car neo = new Car("네오");
+        Car pedro = new Car("pedro");
+        Car moly = new Car("moly");
+        CarGroup carGroup = new CarGroup(
+                List.of(pedro, moly)
+        );
 
-        carGroup.add(pedro);
-        carGroup.add(moly);
-        carGroup.add(neo);
+        int notMoveNumber = 0;
+        List<Integer> numbers = List.of(notMoveNumber, notMoveNumber);
+        carGroup.race(new FixedNumberGenerator(numbers));
 
         assertThat(carGroup.findWinners()).isEmpty();
     }
