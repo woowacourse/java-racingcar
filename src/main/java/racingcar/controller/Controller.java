@@ -1,9 +1,9 @@
 package racingcar.controller;
 
 import racingcar.domain.car.Car;
+import racingcar.domain.car.CarDistance;
 import racingcar.domain.car.Cars;
 import racingcar.domain.RacingCount;
-import racingcar.domain.RacingRule;
 import racingcar.dto.CarStatus;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -58,9 +58,9 @@ public class Controller {
     }
 
     private List<String> getWinners(final Cars cars) {
-        final RacingRule racingRule = new RacingRule();
-        return racingRule.getWinners(cars)
-                .stream()
+        final CarDistance maxDistance = cars.getMaxDistance();
+        final List<Car> winners = cars.findCarsAtDistance(maxDistance);
+        return winners.stream()
                 .map(Car::getName)
                 .toList();
     }

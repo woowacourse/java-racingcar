@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import racingcar.domain.car.Cars;
 
 class CarFactoryTest {
 
