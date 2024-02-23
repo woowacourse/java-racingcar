@@ -1,8 +1,8 @@
-package config;
+package racingcar.config;
 
-import controller.Controller;
-import view.InputView;
-import view.OutputView;
+import racingcar.controller.Controller;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class AppConfig {
 

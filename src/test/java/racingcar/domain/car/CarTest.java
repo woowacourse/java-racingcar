@@ -1,5 +1,6 @@
-package domain;
+package racingcar.domain.car;
 
+import racingcar.domain.power.Power;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,11 +15,11 @@ class CarTest {
     @Test
     void forwardCar() {
         // Given
-        NumberRangeGenerator numberRangeGenerator = (start, end) -> 5;
-        Car car = new Car(numberRangeGenerator, "test");
+        Power enoughPower = new Power(4);
+        Car car = Car.createCar("test");
 
         // When
-        car.move();
+        car.move(enoughPower);
         int distance = car.getDistance();
 
         // Then
@@ -29,11 +30,11 @@ class CarTest {
     @Test
     void notForwardCar() {
         // Given
-        NumberRangeGenerator numberRangeGenerator = (start, end) -> 2;
-        Car car = new Car(numberRangeGenerator, "test");
+        Power notEnoughPower = new Power(3);
+        Car car = Car.createCar("test");
 
         // When
-        car.move();
+        car.move(notEnoughPower);
         int distance = car.getDistance();
 
         // Then
@@ -47,7 +48,7 @@ class CarTest {
         String soLongCarName = "chicken-boy";
 
         // When & Then
-        Assertions.assertThatThrownBy(() -> new Car(null, soLongCarName))
+        Assertions.assertThatThrownBy(() -> Car.createCar(soLongCarName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름 길이는 1이상 5이하의 문자열만 가능합니다.");
     }
@@ -59,7 +60,7 @@ class CarTest {
         String emptyName = "";
 
         // When & Then
-        Assertions.assertThatThrownBy(() -> new Car(new RandomNumberRangeGenerator(), emptyName))
+        Assertions.assertThatThrownBy(() -> Car.createCar(emptyName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름 길이는 1이상 5이하의 문자열만 가능합니다.");
     }
@@ -71,7 +72,7 @@ class CarTest {
             "'', 이름 길이는 1이상 5이하의 문자열만 가능합니다."
     })
     void createCarThrowExceptionForInvalidName(String inputName, String expectedMessage) {
-        Assertions.assertThatThrownBy(() -> new Car(new RandomNumberRangeGenerator(), inputName))
+        Assertions.assertThatThrownBy(() -> Car.createCar(inputName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(expectedMessage);
     }

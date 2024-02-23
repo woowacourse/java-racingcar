@@ -1,5 +1,7 @@
-import config.AppConfig;
-import controller.Controller;
+package racingcar;
+
+import racingcar.config.AppConfig;
+import racingcar.controller.Controller;
 
 public class RacingCarApplication {
 

@@ -1,14 +1,11 @@
-package domain;
+package racingcar.domain;
 
-public class RacingCount {
+public record RacingCount(int count) {
 
     private static final int MIN_ROUND_COUNT = 1;
 
-    private final int count;
-
-    public RacingCount(final int count) {
+    public RacingCount {
         validateCount(count);
-        this.count = count;
     }
 
     private void validateCount(final int count) {
@@ -17,7 +14,7 @@ public class RacingCount {
         }
     }
 
-    public int getCount() {
-        return count;
+    public boolean isFinish(int playedCount) {
+        return playedCount >= count;
     }
 }

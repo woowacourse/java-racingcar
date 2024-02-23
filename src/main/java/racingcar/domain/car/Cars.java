@@ -1,9 +1,8 @@
-package domain;
-
-import dto.CarStatus;
+package racingcar.domain.car;
 
 import java.util.HashSet;
 import java.util.List;
+import racingcar.domain.power.PowerGenerator;
 
 public class Cars {
 
@@ -11,7 +10,7 @@ public class Cars {
 
     private final List<Car> cars;
 
-    Cars(final List<Car> cars) {
+    private Cars(final List<Car> cars) {
         this.cars = cars;
     }
 
@@ -20,7 +19,7 @@ public class Cars {
         validateDuplicatedCarNames(carNames);
 
         final List<Car> cars = carNames.stream()
-                .map(name -> new Car(new RandomNumberRangeGenerator(), name))
+                .map(Car::createCar)
                 .toList();
 
         return new Cars(cars);
@@ -39,21 +38,25 @@ public class Cars {
         }
     }
 
-    public List<CarStatus> race() {
-        cars.forEach(Car::move);
-        return cars.stream()
-                .map(Car::getStatus)
-                .toList();
+    public void race(PowerGenerator powerGenerator) {
+        cars.forEach(car -> car.move(powerGenerator.generatePower()));
     }
 
     public List<Car> getCars() {
         return cars;
     }
 
-    public int getMaxDistance() {
+    public List<Car> findCarsAtDistance(CarDistance distance) {
         return cars.stream()
+                .filter(car -> car.isAtDistance(distance))
+                .toList();
+    }
+
+    public CarDistance getMaxDistance() {
+        int maxDistance = cars.stream()
                 .mapToInt(Car::getDistance)
                 .max()
-                .orElseGet(() -> 0);
+                .orElseGet(() -> CarDistance.getInitialDistance().distance());
+        return new CarDistance(maxDistance);
     }
 }
