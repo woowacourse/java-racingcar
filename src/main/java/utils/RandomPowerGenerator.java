@@ -2,7 +2,7 @@ package utils;
 
 import java.util.Random;
 
-public class RandomGenerator implements NumberGenerator {
+public class RandomPowerGenerator implements PowerGenerator {
     private static final Random random = new Random();
 
     public int getNumber() {

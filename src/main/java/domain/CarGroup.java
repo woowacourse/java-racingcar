@@ -1,40 +1,54 @@
 package domain;
 
+import dto.CarDto;
+import dto.ResultDto;
+import utils.PowerGenerator;
+import utils.RandomPowerGenerator;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class CarGroup {
-    private final List<Car> cars;
+    private final List<Car> carGroup;
+    private final PowerGenerator powerGenerator;
 
-    public CarGroup(String[] carNames) {
-        this.cars = generateCars(carNames);
-    }
-
-    private List<Car> generateCars(String[] carNames) {
-        return Arrays.stream(carNames)
+    public CarGroup(final String[] carNames) {
+        this.carGroup = Arrays.stream(carNames)
                 .map(Car::new)
                 .collect(Collectors.toList());
+        this.powerGenerator = new RandomPowerGenerator();
     }
 
-    public List<Car> getAllCars() {
-        return cars;
+    CarGroup(final String[] carNames, final PowerGenerator powerGenerator) {
+        this.carGroup = Arrays.stream(carNames)
+                .map(Car::new)
+                .collect(Collectors.toList());
+        this.powerGenerator = powerGenerator;
     }
 
-    public List<Car> getWinners() {
-        int maxPosition = getMaxPosition();
+    public ResultDto move() {
+        for (Car car : carGroup) {
+            car.move(powerGenerator.getNumber());
+        }
+        return ResultDto.toDto(carGroup);
+    }
 
-        if (maxPosition == 0) {
+    public List<CarDto> getWinners() {
+        final int positionMax = getPositionMax();
+
+        if (positionMax == 0) {
             return List.of();
         }
 
-        return cars.stream()
-                .filter(car -> car.isSamePosition(maxPosition))
+        return carGroup.stream()
+                .filter(car -> car.isPositionedAt(positionMax))
+                .map(CarDto::toDto)
                 .toList();
     }
 
-    private int getMaxPosition() {
-        return cars.stream()
+    private int getPositionMax() {
+        return carGroup.stream()
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElse(0);
