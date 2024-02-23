@@ -4,6 +4,8 @@ import racingcar.domain.car.Car;
 import racingcar.domain.car.CarDistance;
 import racingcar.domain.car.Cars;
 import racingcar.domain.RacingCount;
+import racingcar.domain.power.PowerGenerator;
+import racingcar.domain.power.RandomPowerGenerator;
 import racingcar.dto.CarStatus;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -23,8 +25,9 @@ public class Controller {
     public void run() {
         final Cars cars = initCars();
         final RacingCount racingCount = inputRacingCount();
+        final RandomPowerGenerator powerGenerator = new RandomPowerGenerator();
 
-        playRacing(cars, racingCount);
+        playRacing(cars, racingCount, powerGenerator);
         outputView.printWinners(getWinners(cars));
     }
 
@@ -47,11 +50,11 @@ public class Controller {
         }
     }
 
-    private void playRacing(final Cars cars, final RacingCount racingCount) {
+    private void playRacing(final Cars cars, final RacingCount racingCount, PowerGenerator powerGenerator) {
         outputView.printResultMessageTitle();
         int playedCount = 0;
         while (!racingCount.isFinish(playedCount)) {
-            cars.race();
+            cars.race(powerGenerator);
             List<CarStatus> carStatuses = getCarStatuses(cars);
             outputView.printRacingResult(carStatuses);
             playedCount++;

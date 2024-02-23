@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static racingcar.domain.power.PowerGenerator.POWER_GENERATOR;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CarTest {
@@ -16,7 +15,7 @@ class CarTest {
     @Test
     void forwardCar() {
         // Given
-        Power enoughPower = POWER_GENERATOR.generateRandomPowerInRange(4, 9);
+        Power enoughPower = new Power(4);
         Car car = Car.createCar("test");
 
         // When
@@ -31,7 +30,7 @@ class CarTest {
     @Test
     void notForwardCar() {
         // Given
-        Power notEnoughPower = POWER_GENERATOR.generateRandomPowerInRange(1, 3);
+        Power notEnoughPower = new Power(3);
         Car car = Car.createCar("test");
 
         // When

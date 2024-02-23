@@ -12,14 +12,12 @@ class CarsTest {
     @Test
     void getMaxDistance() {
         // Given
-        Car car1 = Car.createCar("test1");
-        Car car2 = Car.createCar("test2");
-        Car car3 = Car.createCar("test3");
-        Cars cars = new Cars(List.of(car1, car2, car3));
+        Cars cars = Cars.generateCars(List.of("car1", "car2", "car3"));
+        Car car = cars.getCars().get(0);
 
         // When
         for (int i = 0; i < 3; i++) {
-            car1.move(new Power(9));
+            car.move(new Power(9));
         }
         CarDistance maxDistance = cars.getMaxDistance();
 

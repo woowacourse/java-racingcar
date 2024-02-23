@@ -1,11 +1,8 @@
 package racingcar.domain.car;
 
-import static racingcar.domain.power.PowerGenerator.POWER_GENERATOR;
-
-import racingcar.dto.CarStatus;
-
 import java.util.HashSet;
 import java.util.List;
+import racingcar.domain.power.PowerGenerator;
 
 public class Cars {
 
@@ -13,7 +10,7 @@ public class Cars {
 
     private final List<Car> cars;
 
-    Cars(final List<Car> cars) {
+    private Cars(final List<Car> cars) {
         this.cars = cars;
     }
 
@@ -41,8 +38,8 @@ public class Cars {
         }
     }
 
-    public void race() {
-        cars.forEach(car -> car.move(POWER_GENERATOR.generateRandomPower()));
+    public void race(PowerGenerator powerGenerator) {
+        cars.forEach(car -> car.move(powerGenerator.generatePower()));
     }
 
     public List<Car> getCars() {
