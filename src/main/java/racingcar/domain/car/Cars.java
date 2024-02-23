@@ -41,11 +41,12 @@ public class Cars {
         }
     }
 
-    public List<CarStatus> race() {
+    public void race() {
         cars.forEach(car -> car.move(POWER_GENERATOR.generateRandomPower()));
-        return cars.stream()
-                .map(car -> new CarStatus(car.getName(), car.getDistance()))
-                .toList();
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 
     public List<Car> findCarsAtDistance(CarDistance distance) {

@@ -50,11 +50,20 @@ public class Controller {
     private void playRacing(final Cars cars, final RacingCount racingCount) {
         outputView.printResultMessageTitle();
         int playedCount = 0;
-        while (racingCount.isFinish(playedCount)) {
-            List<CarStatus> carStatuses = cars.race();
+        while (!racingCount.isFinish(playedCount)) {
+            cars.race();
+            List<CarStatus> carStatuses = getCarStatuses(cars);
             outputView.printRacingResult(carStatuses);
             playedCount++;
         }
+    }
+
+    private static List<CarStatus> getCarStatuses(Cars cars) {
+        List<CarStatus> carStatuses = cars.getCars()
+                .stream()
+                .map(car -> new CarStatus(car.getName(), car.getDistance()))
+                .toList();
+        return carStatuses;
     }
 
     private List<String> getWinners(final Cars cars) {
