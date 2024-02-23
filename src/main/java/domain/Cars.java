@@ -1,55 +1,41 @@
 package domain;
 
+import util.NumberGenerator;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Cars {
-
-    public static final String DUPLICATE_CAR_NAME_EXCEPTION = "[ERROR] 자동차 이름은 중복될 수 없습니다.";
     private final List<Car> racingCars;
 
-    public Cars(List<Car> racingCars) {
+    public Cars(final List<Car> racingCars) {
         validateCars(racingCars);
         this.racingCars = racingCars;
     }
 
-    private static void validateCars(List<Car> racingCars) {
+    private static void validateCars(final List<Car> racingCars) {
         Set<Car> distinctCars = new HashSet<>(racingCars);
         if (racingCars.size() != distinctCars.size()) {
-            throw new IllegalArgumentException(DUPLICATE_CAR_NAME_EXCEPTION);
+            throw new IllegalArgumentException("[ERROR] 자동차 이름은 중복될 수 없습니다.");
         }
     }
 
-    private static String generateResult(Car car) {
-        String distance = "-";
-        return car.getCarName()
-                + " : "
-                + distance.repeat(car.getDistance());
+    public List<Car> updateRaceRound(final NumberGenerator numberGenerator) {
+        racingCars.forEach(car -> car.moveForward(numberGenerator.generateNumber()));
+        return racingCars;
     }
 
-    public void updateRaceRound() {
-        racingCars.forEach(car -> car.moveForward(NumberGenerator.generateRandomNumber()));
-    }
-
-    public String getRoundResult() {
-        return racingCars.stream()
-                .map(Cars::generateResult)
-                .collect(Collectors.joining("\n"));
-    }
-
-    public String getWinners(int maxDistance) {
+    public List<Car> getWinners(final int maxDistance) {
         return racingCars.stream()
                 .filter(car -> car.getDistance() == maxDistance)
-                .map(Car::getCarName)
-                .collect(Collectors.joining(", "));
+                .toList();
     }
 
     public int getMaxDistance() {
         return racingCars.stream()
                 .mapToInt(Car::getDistance)
                 .max()
-                .orElseThrow();
+                .orElse(0);
     }
 }

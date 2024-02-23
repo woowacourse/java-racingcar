@@ -2,6 +2,7 @@ package controller;
 
 import domain.Car;
 import domain.Cars;
+import util.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -10,39 +11,41 @@ import java.util.List;
 
 public class RacingGame {
 
-    private final StringBuilder roundResult = new StringBuilder();
-
-
     public void startRacing() {
-        String carNames = InputView.getCarNames();
-        List<Car> cars = parseCarNames(carNames);
-        Cars racingCars = new Cars(cars);
+        Cars racingCars = makeCars();
 
+        int roundCount = makeRoundCounts();
+
+        startRounds(roundCount, racingCars);
+
+        printWinners(racingCars);
+    }
+
+    private Cars makeCars() {
+        List<String> carNames = InputView.getCarNames();
+
+        List<Car> racingCars = new ArrayList<>();
+        for (String carName : carNames) {
+            racingCars.add(new Car(carName));
+        }
+        return new Cars(racingCars);
+    }
+
+    private int makeRoundCounts() {
         String rawRoundCounts = InputView.getRacingRounds();
-        int roundCount = InputView.parseRoundCounts(rawRoundCounts);
-
-        String roundResults = startRounds(roundCount, racingCars);
-        int maxDistance = racingCars.getMaxDistance();
-
-        OutputView.printResultNotice();
-        OutputView.printRoundResult(roundResults);
-        OutputView.printWinners(racingCars.getWinners(maxDistance));
+        return InputView.parseRoundCounts(rawRoundCounts);
     }
 
-    private String startRounds(int roundCounts, Cars cars) {
+    private void startRounds(final int roundCounts, final Cars cars) {
         for (int i = 0; i < roundCounts; i++) {
-            cars.updateRaceRound();
-            roundResult.append(cars.getRoundResult());
-            roundResult.append("\n\n");
+            List<Car> updateRaceRound = cars.updateRaceRound(new RandomNumberGenerator());
+            OutputView.printRoundResult(updateRaceRound);
         }
-        return roundResult.toString();
     }
 
-    private List<Car> parseCarNames(String carNames) {
-        List<Car> cars = new ArrayList<>();
-        for (String name : carNames.split(",")) {
-            cars.add(new Car(name));
-        }
-        return cars;
+    private void printWinners(final Cars cars) {
+        int maxDistance = cars.getMaxDistance();
+        OutputView.printResultNotice();
+        OutputView.printWinners(cars.getWinners(maxDistance));
     }
 }
