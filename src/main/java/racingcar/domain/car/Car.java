@@ -16,10 +16,6 @@ public class Car {
         return new Car(new CarName(name), CarDistance.getInitialDistance());
     }
 
-    static Car createCar(final String name, final int distance) {
-        return new Car(new CarName(name), new CarDistance(distance));
-    }
-
     public void move(Power power) {
         if (power.isEnoughPower()) {
             distance = distance.getNextDistance();
