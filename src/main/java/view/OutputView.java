@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String DASH = "-";
+    private static final String COLON = " : ";
 
     private OutputView() {
     }
@@ -32,6 +33,6 @@ public class OutputView {
 
 
     private static String generateResult(final Car car) {
-        return String.join(" : ", car.getCarName(), DASH.repeat(car.getDistance()));
+        return String.join(COLON, car.getCarName(), DASH.repeat(car.getDistance()));
     }
 }

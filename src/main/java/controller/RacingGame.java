@@ -11,8 +11,6 @@ import java.util.List;
 
 public class RacingGame {
 
-    private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-
     public void startRacing() {
         Cars racingCars = makeCars();
 
@@ -40,7 +38,7 @@ public class RacingGame {
 
     private void startRounds(final int roundCounts, final Cars cars) {
         for (int i = 0; i < roundCounts; i++) {
-            List<Car> updateRaceRound = cars.updateRaceRound(randomNumberGenerator);
+            List<Car> updateRaceRound = cars.updateRaceRound(new RandomNumberGenerator());
             OutputView.printRoundResult(updateRaceRound);
         }
     }
